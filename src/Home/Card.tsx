@@ -1,6 +1,5 @@
-import React from 'react'
 
-export const Card = ({cloudinaryImageId, cuisines, name, lastMileTravel}) => {
+export const Card = ({ cuisines, name, lastMileTravel}) => {
   return (
     <div className="flex items-center justify-center h-full">
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">

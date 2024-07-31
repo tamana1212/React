@@ -1,5 +1,7 @@
+import { useState } from "react"
+import { restrautList } from "../config";
 
-const Navbar = () => {
+const Navbar = ({search, setSearch}) => {
   return (
     <div className="bg-black shadow-md">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -11,7 +13,13 @@ const Navbar = () => {
             <a href="#" className="text-gray-300 hover:text-orange-400">Home</a>
             <a href="#" className="text-gray-300 hover:text-orange-400">Services</a>
             <a href="#" className="text-gray-300 hover:text-orange-400">Locations</a>
-            <a href="#" className="text-gray-300 hover:text-orange-400">Cart</a>
+            <a href="#" className="text-gray-300 hover:text-orange-400">Help</a>
+        </div>
+        <div className="flex items-center md:space-x-4">
+            <input type="text" placeholder="Search..." value={search} className="px-4 py-2 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600" onChange={(e) => setSearch(e.target.value)} />
+            <button type="button" className="text-gray-400 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-600" aria-label="Search">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 0l6 6"></path></svg>
+            </button>
         </div>
         <div className="md:hidden">
             <button type="button" className="text-gray-400 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-600" aria-label="Toggle navigation">
