@@ -1,3 +1,7 @@
 .max-250 {
   max-width: 300px !important;
 }
+
+.cards_wrapper{
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+}
