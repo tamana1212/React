@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { Card } from "../Home/Card";
 import { restrautList } from "../config";
 
-const Home = ({ search }) => {
-  const [product, setProduct] = useState([restrautList]);
-  const [filtered, setFiltered] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const Home = ({search}) => {
+  const [product, setProduct] = useState<any>([]);
+  const [filtered, setFiltered] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
 
   useEffect(() => {
     getRestaurants();
   }, []);
 
   useEffect(() => {
-    if (product.length > 0) {
+    if (product?.length > 0) {
       const filteredData = product.filter((item) => {
         return item?.["name"]?.toLowerCase()?.includes(search?.toLowerCase());
       });
@@ -41,7 +41,7 @@ const Home = ({ search }) => {
   };
 
   return (
-    <div className="grid  mt-8 gap-5 cards_wrapper">
+    <div className="grid mt-8 gap-5 cards_wrapper">
       {isLoading ? (
         "Loading..."
       ) : filtered.length ? (

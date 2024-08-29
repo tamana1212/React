@@ -1,18 +1,35 @@
-import { useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import About from "./pages/About";
+import AppLayout from "./pages/AppLayout";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import { useState } from "react";
 
 function App() {
   const [search, setSearch] = useState("");
+  const appRouter = createBrowserRouter([
+    {
+      element: <AppLayout search={search} setSearch={setSearch} />, // Wrapping layout component
+      children: [
+        {
+          path: "/", // Route for Home page
+          element: <Home search={search} />,
+        },
+        {
+          path: "about", // Route for About page
+          element: <About />,
+        },
+      ],
+    },
+  ]);
+  
   return (
-      <BrowserRouter>
-        <Navbar setSearch={setSearch} search={search} />
-        <Routes>
-          <Route path="/" element={<Home search={search} />} />
-        </Routes>
-      </BrowserRouter>
+    <>
+      <RouterProvider router={appRouter} />
+    </>
   );
 }
 

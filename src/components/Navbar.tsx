@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { restrautList } from "../config";
+
 import { Link } from "react-router-dom";
 
 const Navbar = ({search, setSearch}) => {
@@ -12,7 +11,7 @@ const Navbar = ({search, setSearch}) => {
         </Link>
         <div className="hidden md:flex md:space-x-8">
             <Link  to="/" className="text-gray-300 hover:text-orange-400">Home</Link>
-            <Link to="/" className="text-gray-300 hover:text-orange-400">Services</Link>
+            <Link to="/about" className="text-gray-300 hover:text-orange-400">About</Link>
             <Link to="/" className="text-gray-300 hover:text-orange-400">Locations</Link>
             <Link to="/" className="text-gray-300 hover:text-orange-400">Help</Link>
         </div>
