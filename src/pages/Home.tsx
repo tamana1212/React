@@ -14,7 +14,7 @@ const Home = ({search}) => {
   useEffect(() => {
     if (product?.length > 0) {
       const filteredData = product.filter((item) => {
-        return item?.["name"]?.toLowerCase()?.includes(search?.toLowerCase());
+        return item?.["title"]?.toLowerCase()?.includes(search?.toLowerCase());
       });
       setFiltered(filteredData);
     }
@@ -23,16 +23,11 @@ const Home = ({search}) => {
   const getRestaurants = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.22810&lng=75.77870&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://fakestoreapi.com/products"
       );
       const jsonData = await data.json();
-      setProduct(
-        jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
-          (item) => {
-            return item.info;
-          }
-        )
-      );
+      console.log( jsonData, "sdd")
+      setProduct(jsonData);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
