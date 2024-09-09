@@ -1,3 +1,7 @@
+import { Outlet } from "react-router-dom";
+import { Profile } from "./Profile";
+import { ProfileClass } from "./ProfileClass";
+
 const About = () => {
   return (
     <div className="about-container">
@@ -15,6 +19,9 @@ const About = () => {
                     We are a diverse group of professionals with expertise in various fields, dedicated to achieving excellence.
                 </p>
             </div>
+            {/* <Profile /> */}
+            <ProfileClass name={"tamana"} />
+            <Outlet />
         </div>
   );
 }

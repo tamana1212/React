@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import ErrorPage from "./pages/ErroPage";
 import ProductDetails from "./pages/ProductDetails";
+import { Profile } from "./pages/Profile";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -24,6 +25,12 @@ function App() {
         {
           path: "about",
           element: <About />,
+          children: [
+            {
+              path: "profile",
+              element: <Profile/>
+            }
+          ]
         },
         {
           path: "product/:id",

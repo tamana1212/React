@@ -15,7 +15,7 @@ export const Card = ({ productData }) => {
         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900">
           {title}
         </h5>
-        <p className="mb-3 font-normal text-gray-500">Loaction: {description}</p>
+        <p className="mb-3 font-normal text-gray-500 card_desc">Loaction: {description}</p>
         <p className="mb-3 font-normal text-gray-500">
          {category}
         </p>
