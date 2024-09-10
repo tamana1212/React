@@ -57,7 +57,6 @@ export class ProfileClass extends React.Component<
       }
       const jsonData = await response.json();
       this.setState({ userData: jsonData });
-      console.log(jsonData);
     } catch (error) {
       console.error("Error fetching user data:", error);
       alert("User not found");

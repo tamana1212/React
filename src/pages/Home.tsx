@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card } from "../Home/Card";
 import { restrautList } from "../config";
+import useOffline from "../utils/useOffline";
 
-const Home = ({search}) => {
+const Home = ({ search }) => {
   const [product, setProduct] = useState<any>([]);
   const [filtered, setFiltered] = useState<any>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(true);
@@ -20,13 +21,16 @@ const Home = ({search}) => {
     }
   }, [search, product]);
 
+  const online = useOffline();
+
+  if (!online) {
+    return <h1>oops, no internet detected.</h1>;
+  }
+
   const getRestaurants = async () => {
     try {
-      const data = await fetch(
-        "https://fakestoreapi.com/products"
-      );
-      const jsonData = await data.json();
-      console.log( jsonData, "sdd")
+      const response = await fetch("https://fakestoreapi.com/products");
+      const jsonData = await response.json();
       setProduct(jsonData);
       setIsLoading(false);
     } catch (error) {
