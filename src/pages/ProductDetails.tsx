@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
 
-const RestaurantMenu = () => {
+const RestaurantMenu = ({ cartMove, moveToWish }) => {
   // const [productCard, setProductCard] = useState(null);
   const { id: proId } = useParams();
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   getRestaurantMenu();
@@ -35,8 +36,24 @@ const RestaurantMenu = () => {
               reviews)
             </p>
             <div className="productCard-actions">
-              <button className="btn add-to-cart">Add to Cart</button>
-              <button className="btn move-to-wishlist">Move to Wishlist</button>
+              <button
+                className="btn add-to-cart"
+                onClick={() => {
+                  cartMove(productCard);
+                  navigate("/cart");
+                }}
+              >
+                Add to Cart
+              </button>
+              <button
+                className="btn move-to-wishlist"
+                onClick={() => {
+                  moveToWish(productCard);
+                  navigate("/wishlist");
+                }}
+              >
+                Move to Wishlist
+              </button>
             </div>
           </div>
         </>
