@@ -8,6 +8,7 @@ const Wishlist = ({ wishlistItems, setwishlistItems, cartMove }) => {
   };
 
   const clearWishlist = () => {
+    localStorage.removeItem("wishlistItems")
     setwishlistItems([]);
   };
 

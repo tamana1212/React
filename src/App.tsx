@@ -7,7 +7,7 @@ import {
   RouterProvider,
   useNavigate,
 } from "react-router-dom";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import ErrorPage from "./pages/ErroPage";
 import ProductDetails from "./pages/ProductDetails";
 import { Profile } from "./pages/Profile";
@@ -17,14 +17,28 @@ const InstaMart = lazy(() => import("./pages/InstaMart"));
 
 function App() {
   const [search, setSearch] = useState("");
-  const [cartItems, setCartItems] = useState([]);
-  const [wishlistItems, setwishlistItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState(() => {
+    const savedWishlistItems = localStorage.getItem("wishlistItems");
+    return savedWishlistItems ? JSON.parse(savedWishlistItems) : [];
+  });
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCartItems = localStorage.getItem("cartItems");
+    return savedCartItems ? JSON.parse(savedCartItems) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("wishlistItems", JSON.stringify(wishlistItems));
+  }, [wishlistItems]);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const moveToWishlist = (productCard) => {
     console.log(productCard);
     if (wishlistItems.find((item) => item.id === productCard.id)) {
       alert("item already in wishlist");
     } else {
-      setwishlistItems((prev) => [...prev, productCard]);
+      setWishlistItems((prev) => [...prev, productCard]);
     }
   };
 
@@ -98,7 +112,7 @@ function App() {
             <Suspense fallback="Loading...">
               <Wishlist
                 wishlistItems={wishlistItems}
-                setwishlistItems={setwishlistItems}
+                setwishlistItems={setWishlistItems}
                 cartMove={(item) => moveToCart(item)}
               />
             </Suspense>
